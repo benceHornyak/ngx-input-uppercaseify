@@ -1,0 +1,50 @@
+{
+  "name": "ngx-input-uppercaseify",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/ngx-input-uppercaseify/src",
+  "prefix": "ngx-input-uppercaseify",
+  "tags": [],
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/angular:package",
+      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "options": {
+        "project": "libs/ngx-input-uppercaseify/ng-package.json"
+      },
+      "configurations": {
+        "production": {
+          "tsConfig": "libs/ngx-input-uppercaseify/tsconfig.lib.prod.json"
+        },
+        "development": {
+          "tsConfig": "libs/ngx-input-uppercaseify/tsconfig.lib.json"
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "libs/ngx-input-uppercaseify/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "configurations": {
+        "ci": {
+          "ci": true,
+          "codeCoverage": true
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "libs/ngx-input-uppercaseify/**/*.ts",
+          "libs/ngx-input-uppercaseify/**/*.html"
+        ]
+      }
+    }
+  }
+}
