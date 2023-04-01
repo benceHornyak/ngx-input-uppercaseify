@@ -1,6 +1,6 @@
 {
   "name": "@benceHornyak/ngx-input-uppercaseify",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "peerDependencies": {
     "@angular/common": "^15.2.0",
     "@angular/core": "^15.2.0"
@@ -8,5 +8,22 @@
   "dependencies": {
     "tslib": "^2.3.0"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": {
+    "name": "Bence Hornyák",
+    "email": "sir.bence15@gmail.com",
+    "url": "https://bencehornyak.me/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/benceHornyak/ngx-input-uppercaseify"
+  },
+  "bugs": {
+    "url": "https://github.com/benceHornyak/ngx-input-uppercaseify/issues"
+  },
+  "homepage": "https://github.com/benceHornyak/ngx-input-uppercaseify#readme",
+  "license": "MIT"
 }
