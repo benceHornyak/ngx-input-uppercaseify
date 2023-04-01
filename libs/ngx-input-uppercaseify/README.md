@@ -7,7 +7,7 @@ The `ngxInputUppercaseify` directive is a simple but powerful tool for your Angu
 Getting started with ngx-input-uppercaseify is easy! Simply install it with npm:
 
 ```bash
-npm install @benceHornyak/ngx-input-uppercaseify
+npm install @bencehornyak/ngx-input-uppercaseify
 ```
 
 ## Usage
