@@ -25,5 +25,12 @@
     "url": "https://github.com/benceHornyak/ngx-input-uppercaseify/issues"
   },
   "homepage": "https://github.com/benceHornyak/ngx-input-uppercaseify#readme",
-  "license": "MIT"
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "uppercase",
+    "input",
+    "directive",
+    "uppercaseify"
+  ]
 }
