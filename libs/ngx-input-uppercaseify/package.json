@@ -1,5 +1,5 @@
 {
-  "name": "@benceHornyak/ngx-input-uppercaseify",
+  "name": "@bencehornyak/ngx-input-uppercaseify",
   "version": "1.0.0",
   "peerDependencies": {
     "@angular/common": "^15.2.0",
