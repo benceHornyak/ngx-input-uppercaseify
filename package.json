@@ -6,6 +6,7 @@
     "start": "nx serve demo --configuration=development",
     "lint": "nx lint ngx-input-uppercaseify",
     "test": "nx test ngx-input-uppercaseify",
+    "app:build": "nx build demo",
     "lib:build": "nx build ngx-input-uppercaseify",
     "lib:build:prod": "nx build ngx-input-uppercaseify --prod",
     "lib:publish": "npm run lib:build:prod && npm publish dist/libs/ngx-input-uppercaseify",
