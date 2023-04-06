@@ -9,7 +9,7 @@ import { NgxInputUppercaseifyDirective } from '@benceHornyak/ngx-input-uppercase
   template: `
     <div>
       <label for="input-without-ngcontrol">Input without control</label>
-      <input id="input-without-ngcontrol" ngxInputUppercaseify />
+      <input id="input-without-ngcontrol" ngxInputUppercaseify type="text" />
     </div>
 
     <div>
@@ -18,6 +18,7 @@ import { NgxInputUppercaseifyDirective } from '@benceHornyak/ngx-input-uppercase
         id="input-with-ngmodel"
         ngxInputUppercaseify
         [(ngModel)]="ngModelValue"
+        type="text"
       />
       <p>ngModel value: {{ ngModelValue }}</p>
     </div>
@@ -27,6 +28,7 @@ import { NgxInputUppercaseifyDirective } from '@benceHornyak/ngx-input-uppercase
       <input
         id="input-with-formcontrol"
         ngxInputUppercaseify
+        type="text"
         [formControl]="formControl"
       />
       <p>formControl value: {{ formControl.value }}</p>
@@ -36,4 +38,10 @@ import { NgxInputUppercaseifyDirective } from '@benceHornyak/ngx-input-uppercase
 export class AppComponent {
   ngModelValue = '';
   readonly formControl = new FormControl('');
+
+  constructor() {
+    this.formControl.valueChanges.subscribe((value) => {
+      console.log('formControl value changed', value);
+    });
+  }
 }
