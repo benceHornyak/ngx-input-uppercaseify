@@ -41,11 +41,14 @@ describe('NgxInputUppercaseifyDirective', () => {
   describe('when input is changed', () => {
     const testValue = 'hello';
 
-    it('should uppercase the value', () => {
-      inputElement.value = testValue;
-      inputElement.dispatchEvent(new Event('input'));
+    beforeEach(() => {
+      inputElement.dispatchEvent(
+        new InputEvent('beforeinput', { data: testValue })
+      );
       fixture.detectChanges();
+    });
 
+    it('should uppercase the value', () => {
       expect(inputElement.value).toBe(testValue.toUpperCase());
     });
   });
