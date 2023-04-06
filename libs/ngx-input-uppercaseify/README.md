@@ -17,7 +17,7 @@ Using the `ngxInputUppercaseify` directive is a breeze! To convert any input fie
 First make sure you import the `NgxInputUppercaseifyDirective` in your module:
 
 ```typescript
-import { NgxInputUppercaseifyDirective } from '@benceHornyak/ngx-input-uppercaseify';
+import { NgxInputUppercaseifyDirective } from '@bencehornyak/ngx-input-uppercaseify';
 
 @NgModule({
   imports: [NgxInputUppercaseifyDirective],
@@ -28,7 +28,7 @@ export class AppModule {}
 or if you are using standalone:
 
 ```typescript
-import { NgxInputUppercaseifyDirective } from '@benceHornyak/ngx-input-uppercaseify';
+import { NgxInputUppercaseifyDirective } from '@bencehornyak/ngx-input-uppercaseify';
 
 @Component({
   standalone: true,
