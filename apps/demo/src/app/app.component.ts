@@ -1,12 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgxInputUppercaseifyDirective } from '@benceHornyak/ngx-input-uppercaseify';
+import { Subject, takeUntil } from 'rxjs';
 
 @Component({
   standalone: true,
   selector: 'ngx-input-uppercaseify-root',
   imports: [NgxInputUppercaseifyDirective, FormsModule, ReactiveFormsModule],
   template: `
+    <div>
+      <label for="input-without-ngxInputUppercaseify">
+        Without ngxInputUppercaseify
+      </label>
+      <input id="input-without-ngxInputUppercaseify" type="text" />
+    </div>
+
     <div>
       <label for="input-without-ngcontrol">Input without control</label>
       <input id="input-without-ngcontrol" ngxInputUppercaseify type="text" />
@@ -35,13 +43,22 @@ import { NgxInputUppercaseifyDirective } from '@benceHornyak/ngx-input-uppercase
     </div>
   `,
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy {
   ngModelValue = '';
   readonly formControl = new FormControl('');
 
-  constructor() {
-    this.formControl.valueChanges.subscribe((value) => {
-      console.log('formControl value changed', value);
-    });
+  private destroy$ = new Subject<void>();
+
+  ngOnInit(): void {
+    this.formControl.valueChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((value) => {
+        console.log('formControl value changed', value);
+      });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 }

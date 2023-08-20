@@ -1,47 +1,46 @@
-import { Directive, ElementRef, Host, HostListener } from '@angular/core';
+import { Directive, ElementRef, OnInit } from '@angular/core';
 import { isNil } from './typeguards/isNil.typeguard';
 
 @Directive({
   selector: 'input[type="text"][ngxInputUppercaseify]',
   standalone: true,
 })
-export class NgxInputUppercaseifyDirective {
-  constructor(@Host() private inputElement: ElementRef<HTMLInputElement>) {}
+export class NgxInputUppercaseifyDirective implements OnInit {
+  constructor(private elementRef: ElementRef<HTMLInputElement>) {}
 
-  @HostListener('beforeinput', ['$event'])
-  onBeforeInput(event: InputEvent) {
-    event.preventDefault();
+  ngOnInit(): void {
+    const inputElement = this.elementRef.nativeElement;
 
-    const inputElement = this.inputElement.nativeElement;
-    const {
-      selectionStart,
-      selectionEnd,
-      value: currentInputValue,
-    } = inputElement;
-    const data = event.data;
+    inputElement.addEventListener('beforeinput', (event: InputEvent) => {
+      const selectionStart = inputElement.selectionStart;
+      const selectionEnd = inputElement.selectionEnd;
+      const newData = event.data?.toUpperCase();
 
-    if (!data) {
-      return;
-    }
+      if (!isNil(newData) && !isNil(selectionStart) && !isNil(selectionEnd)) {
+        event.preventDefault();
 
-    const newData = data.toUpperCase();
+        const newValue =
+          inputElement.value.substring(0, selectionStart) +
+          newData +
+          inputElement.value.substring(selectionEnd);
 
-    const newValue = !isNil(selectionStart)
-      ? currentInputValue.substring(0, selectionStart) +
-        newData +
-        (!isNil(selectionEnd) ? currentInputValue.substring(selectionEnd) : '')
-      : '';
+        inputElement.value = newValue;
 
-    inputElement.value = newValue;
+        inputElement.setSelectionRange(
+          selectionStart + newData.length,
+          selectionStart + newData.length
+        );
 
-    const newEvent = new InputEvent('input', {
-      data: newValue,
-      inputType: event.inputType,
-      isComposing: false,
-      bubbles: true,
-      cancelable: false,
+        const newEvent = new InputEvent('input', {
+          data: newData,
+          inputType: event.inputType,
+          isComposing: false,
+          bubbles: true,
+          cancelable: false,
+        });
+
+        inputElement.dispatchEvent(newEvent);
+      }
     });
-
-    inputElement.dispatchEvent(newEvent);
   }
 }
